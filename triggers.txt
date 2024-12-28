@@ -1,0 +1,8 @@
+CREATE TRIGGER update_payment_status
+BEFORE INSERT ON RentPayment
+FOR EACH ROW
+BEGIN
+    IF NEW.payment_status = 'Not Paid' THEN
+        SET NEW.payment_status = 'Pending';
+    END IF;
+END;
